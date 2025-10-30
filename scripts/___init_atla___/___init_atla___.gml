@@ -5,4 +5,5 @@ global.atla_page = {}
 global.atla_page_position = {}
 
 global.atla_surface = {}
+global.atla_surface_buffer = {}
 global.atla_surface_size = {}

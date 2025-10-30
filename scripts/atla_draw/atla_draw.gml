@@ -22,9 +22,25 @@ function atla_draw(_page, _name, _index, _x, _y, _xscale, _yscale, _rotation, _c
     
     if (!surface_exists(_surface))
     {
-        show_debug_message($"[ATLA] Surface '{_page}' does not exist!");
+        var _buffer = global.atla_surface_buffer[$ _page];
         
-        exit;
+        if (!buffer_exists(_buffer))
+        {
+            show_debug_message($"[ATLA] Surface '{_page}' does not exist!");
+            
+            exit;
+        }
+        
+        var _size = global.atla_surface_size[$ _page];
+        
+        global.atla_surface[$ _page] = surface_create(
+            (_size >> 0)  & 0xffff,
+            (_size >> 16) & 0xffff
+        );
+        
+        buffer_set_surface(_buffer, global.atla_surface[$ _page], 0);
+        
+        _surface = global.atla_surface[$ _page];
     }
     
     var _page_position = global.atla_page_position[$ _page][_data.get_sprite_index(floor(_index))];
@@ -32,8 +48,11 @@ function atla_draw(_page, _name, _index, _x, _y, _xscale, _yscale, _rotation, _c
     var _position_xoffset = _page_position.get_xoffset();
     var _position_yoffset = _page_position.get_yoffset();
     
-    var _width = _page_position.get_width();
-    var _height = _page_position.get_height();
+    var _x1 = _page_position.get_x();
+    var _y1 = _page_position.get_y();
+    
+    var _x2 = _page_position.get_width();
+    var _y2 = _page_position.get_height();
     
     var _draw_xoffset = _position_xoffset;
     var _draw_yoffset = _position_yoffset;
@@ -44,12 +63,12 @@ function atla_draw(_page, _name, _index, _x, _y, _xscale, _yscale, _rotation, _c
     if (_data.is_rotated())
     {
         _draw_xoffset = _position_yoffset;
-        _draw_yoffset = _width - _position_xoffset;
+        _draw_yoffset = _x2 - _position_xoffset;
         
-        var _temp = _width;
+        var _temp = _x2;
         
-        _width = _height;
-        _height = _temp;
+        _x2 = _y2;
+        _y2 = _temp;
         
         var _temp2 = _draw_xscale;
         
@@ -67,10 +86,10 @@ function atla_draw(_page, _name, _index, _x, _y, _xscale, _yscale, _rotation, _c
     
     draw_surface_general(
         _surface,
-        _page_position.get_x(),
-        _page_position.get_y(),
-        _width,
-        _height,
+        _x1,
+        _y1,
+        _x2,
+        _y2,
         _x - (_xoffset * _cos) + (_yoffset * _sin),
         _y - (_xoffset * _sin) - (_yoffset * _cos),
         _draw_xscale,

@@ -24,17 +24,12 @@ function atla_sort(_page)
         var _a_index = _a.get_index();
         var _b_index = _b.get_index();
         
-        var _aa = (_a_height * 0xffffff) + ((_a_position_index - _a_index + 1) * 0xfff);
-        var _ba = (_b_height * 0xffffff) + ((_b_position_index - _b_index + 1) * 0xfff);
-        
-        if (_aa == _ba)
-        {
-            return _a_index - _b_index;
-        }
+        var _aa = _a_height * 0xffff;
+        var _ba = _b_height * 0xffff;
         
         return
-            ((_b_height * 0xffffff) + ((_b_position_index + 1) * 0xfff) + ((_b.get_number() - _b_index) * 0xff)) -
-            ((_a_height * 0xffffff) + ((_a_position_index + 1) * 0xfff) + ((_a.get_number() - _a_index) * 0xff));
+            _ba + ((_b.get_number() - _b_index) * 0xff) -
+            _aa + ((_a.get_number() - _a_index) * 0xff);
         
     });
     
@@ -53,7 +48,7 @@ function atla_sort(_page)
     {
         var _sprite = _data[i];
         
-        var _name  = _sprite.get_name();
+        var _name = _sprite.get_name();
         
         var _w = _sprite.get_width();
         var _h = _sprite.get_height();

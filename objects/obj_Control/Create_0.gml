@@ -6,15 +6,23 @@ var _ = file_read_directory(
     _2
 );
 
+a = [];
+
 length = array_length(_);
 
 for (var i = 0; i < length; ++i)
 {
-    var _s = sprite_add($"{_2}/{_[i]}", 5, false, false, 0, 0);
+    var _s = sprite_add($"{_2}/{_[i]}", 1, false, false, 0, 0);
     
     sprite_set_offset(_s, sprite_get_width(_s) / 2, sprite_get_height(_s) / 2);
     
+    var _t = current_time;
+    
     atla_push("test", _s, string(i));
+    
+    a[i] = current_time - _t;
+    
+    show_debug_message($"{i}: {current_time - _t}ms")
 }
 
 function file_read_directory(_directory)
