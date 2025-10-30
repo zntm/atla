@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"atla_get_height",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"atla_get_height",
+  "parent":{
+    "name":"atla",
+    "path":"atla.yyp",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

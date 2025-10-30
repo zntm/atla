@@ -31,11 +31,11 @@ function atla_draw(_page, _name, _index, _x, _y, _xscale, _yscale, _rotation, _c
             exit;
         }
         
-        var _size = global.atla_surface_size[$ _page];
+        var _surface_size = global.atla_surface_size[$ _page];
         
         global.atla_surface[$ _page] = surface_create(
-            (_size >> 0)  & 0xffff,
-            (_size >> 16) & 0xffff
+            (_surface_size >> 0)  & 0xffff,
+            (_surface_size >> 16) & 0xffff
         );
         
         buffer_set_surface(_buffer, global.atla_surface[$ _page], 0);

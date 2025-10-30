@@ -1,9 +1,9 @@
 {
   "$GMScript":"v1",
-  "%Name":"atla_sort",
+  "%Name":"atla_get_width",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"atla_sort",
+  "name":"atla_get_width",
   "parent":{
     "name":"atla",
     "path":"atla.yyp",
