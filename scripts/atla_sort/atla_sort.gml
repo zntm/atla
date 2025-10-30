@@ -65,7 +65,7 @@ function atla_sort(_page)
             _w = _h;
             _h = _temp;
             
-            global.atla_page[$ _page][$ _name].is_rotated = true;
+            global.atla_page[$ _page][$ _name].set_is_rotated();
         }
         
         var _index = _sprite.get_index();
@@ -87,7 +87,7 @@ function atla_sort(_page)
             _current_row_height = _h;
         }
         
-        global.atla_page[$ _page][$ _name].sprite[@ _index] = i;
+        global.atla_page[$ _page][$ _name].set_sprite_index(i, _index);
         
         _sprite.set_position(_current_x, _current_y);
         

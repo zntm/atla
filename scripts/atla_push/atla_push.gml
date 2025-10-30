@@ -27,15 +27,7 @@ function atla_push(_page, _sprite, _name)
         array_push(global.atla_page_position[$ _page], new AtlaSprite(_name, _sprite, array_length(global.atla_page_position[$ _page]), i, _number, _xoffset, _yoffset, _width, _height));
     }
     
-    global.atla_page[$ _page][$ _name] = {
-        sprite: [],
-        xoffset: _xoffset,
-        yoffset: _yoffset,
-        width: _width,
-        height: _height,
-        number: _number,
-        is_rotated: false
-    }
+    global.atla_page[$ _page][$ _name] = new Atla(_xoffset, _yoffset, _width, _height, _number);
     
     atla_sort(_page);
     
@@ -56,7 +48,7 @@ function atla_push(_page, _sprite, _name)
         var _w = _.get_width();
         var _h = _.get_height();
         
-        if (_atla_page[$ _.get_name()].is_rotated)
+        if (_atla_page[$ _.get_name()].is_rotated())
         {
             var _temp = _w;
             
@@ -78,7 +70,7 @@ function atla_push(_page, _sprite, _name)
             var _prev_w = _prev_sprite.get_width();
             var _prev_h = _prev_sprite.get_height();
             
-            if (_atla_page[$ _prev_sprite.get_name()].is_rotated)
+            if (_atla_page[$ _prev_sprite.get_name()].is_rotated())
             {
                 var _temp = _prev_w;
                 
@@ -150,7 +142,7 @@ function atla_push(_page, _sprite, _name)
         var _x = _.get_x();
         var _y = _.get_y();
         
-        if (_atla_page[$ _.get_name()].is_rotated)
+        if (_atla_page[$ _.get_name()].is_rotated())
         {
             var _w = sprite_get_width(_sprite2);
             

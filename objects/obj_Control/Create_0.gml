@@ -6,9 +6,15 @@ var _ = file_read_directory(
     _2
 );
 
-for (var i = 0; i < array_length(_); ++i)
+length = array_length(_);
+
+for (var i = 0; i < length; ++i)
 {
-    atla_push("test", sprite_add($"{_2}/{_[i]}", irandom_range(1, 4), false, false, irandom_range(0, 4), irandom_range(0, 4)), string(i));
+    var _s = sprite_add($"{_2}/{_[i]}", 5, false, false, 0, 0);
+    
+    sprite_set_offset(_s, sprite_get_width(_s) / 2, sprite_get_height(_s) / 2);
+    
+    atla_push("test", _s, string(i));
 }
 
 function file_read_directory(_directory)
@@ -47,3 +53,5 @@ function buffer_load_json(_directory)
         return -1;
     }
 }
+
+j = 0

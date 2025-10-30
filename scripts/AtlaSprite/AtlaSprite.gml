@@ -20,7 +20,6 @@ function AtlaSprite(_name, _sprite, _position_index, _index, _number, _xoffset, 
         return ___sprite;
     }
     
-    
     static get_xoffset = function()
     {
         return ___xoffset;
