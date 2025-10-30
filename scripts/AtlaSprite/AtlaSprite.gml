@@ -86,4 +86,16 @@ function AtlaSprite(_name, _sprite, _position_index, _index, _number, _xoffset, 
     {
         return ___height;
     }
+    
+    static set_uvs = function(_u1, _v1, _u2, _v2)
+    {
+        ___uvs = [ _u1, _v1, _u2, _v2 ];
+        
+        return self;
+    }
+    
+    static get_uvs = function()
+    {
+        return ___uvs;
+    }
 }

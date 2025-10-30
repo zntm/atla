@@ -32,6 +32,11 @@ function atla_push(_page, _sprite, _name)
     
     atla_sort(_page);
     
+    var _surface_size = global.atla_surface_size[$ _page];
+    
+    var _surface_width  = (_surface_size >>  0) & 0xffff;
+    var _surface_height = (_surface_size >> 16) & 0xffff;
+    
     var _atla_page = global.atla_page[$ _page];
     
     var _atla_page_position = global.atla_page_position[$ _page];
@@ -40,8 +45,6 @@ function atla_push(_page, _sprite, _name)
     for (var i = 0; i < _atla_page_position_length; ++i)
     {
         var _ = _atla_page_position[i];
-        
-        if (_.get_index() != 0) continue;
         
         var _x = _.get_x();
         var _y = _.get_y();
@@ -55,56 +58,61 @@ function atla_push(_page, _sprite, _name)
             
             _w = _h;
             _h = _temp;
+            
+            _.set_uvs((_y + _height) / _surface_height, _y / _surface_height, (_x + _width)  / _surface_width, _x / _surface_width);
+        }
+        else
+        {
+            _.set_uvs(_x / _surface_width, _y / _surface_height, (_x + _width)  / _surface_width, (_y + _height) / _surface_height);
         }
         
-        var _n = _.get_number();
-        
-        var _max_y = -1;
-        
-        for (var j = i - 1; j >= 0; --j)
+        if (_.get_index() == 0)
         {
-            var _prev_sprite = _atla_page_position[j];
+            var _n = _.get_number();
             
-            var _prev_x = _prev_sprite.get_x();
-            var _prev_y = _prev_sprite.get_y();
+            var _max_y = -1;
             
-            var _prev_w = _prev_sprite.get_width();
-            var _prev_h = _prev_sprite.get_height();
-            
-            if (_atla_page[$ _prev_sprite.get_name()].is_rotated())
+            for (var j = i - 1; j >= 0; --j)
             {
-                var _temp = _prev_w;
+                var _prev_sprite = _atla_page_position[j];
                 
-                _prev_w = _prev_h;
-                _prev_h = _temp;
-            }
-            
-            if (_x >= _prev_x + _prev_w) || (_y <= _prev_y + _prev_h) continue;
-            
-            if (_max_y < _prev_y + _prev_h) && (_x + (_w * _n) >= _prev_x)
-            {
-                _max_y = _prev_y + _prev_h;
-            }
-            
-            if (_max_y != -1) && (_x >= _prev_x)
-            {
-                for (var l = 0; l < _n; ++l)
+                var _prev_x = _prev_sprite.get_x();
+                var _prev_y = _prev_sprite.get_y();
+                
+                var _prev_w = _prev_sprite.get_width();
+                var _prev_h = _prev_sprite.get_height();
+                
+                if (_atla_page[$ _prev_sprite.get_name()].is_rotated())
                 {
-                    _atla_page_position[@ i + l].set_y(_max_y);
+                    var _temp = _prev_w;
+                    
+                    _prev_w = _prev_h;
+                    _prev_h = _temp;
                 }
                 
-                i += _n - 1;
+                if (_x >= _prev_x + _prev_w) || (_y <= _prev_y + _prev_h) continue;
                 
-                break;
+                if (_max_y < _prev_y + _prev_h) && (_x + (_w * _n) >= _prev_x)
+                {
+                    _max_y = _prev_y + _prev_h;
+                }
+                
+                if (_max_y != -1) && (_x >= _prev_x)
+                {
+                    for (var l = 0; l < _n; ++l)
+                    {
+                        _atla_page_position[@ i + l].set_y(_max_y);
+                    }
+                    
+                    i += _n - 1;
+                    
+                    break;
+                }
             }
         }
     }
     
     var _surface = global.atla_surface[$ _page];
-    var _surface_size = global.atla_surface_size[$ _page];
-    
-    var _surface_width  = (_surface_size >>  0) & 0xffff;
-    var _surface_height = (_surface_size >> 16) & 0xffff;
     
     if (!surface_exists(_surface))
     {
