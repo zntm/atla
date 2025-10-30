@@ -1,4 +1,4 @@
-function Atla(_name, _sprite, _position_index, _index, _number, _xoffset, _yoffset, _width, _height) constructor
+function AtlaSprite(_name, _sprite, _position_index, _index, _number, _xoffset, _yoffset, _width, _height) constructor
 {
     ___name = _name;
     ___sprite = _sprite;

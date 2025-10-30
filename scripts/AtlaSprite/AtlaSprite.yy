@@ -1,9 +1,9 @@
 {
   "$GMScript":"v1",
-  "%Name":"Atla",
+  "%Name":"AtlaSprite",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"Atla",
+  "name":"AtlaSprite",
   "parent":{
     "name":"atla",
     "path":"atla.yyp",

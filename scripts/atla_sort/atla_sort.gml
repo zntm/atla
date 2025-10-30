@@ -60,10 +60,10 @@ function atla_sort(_page)
         
         if (_w > _h)
         {
-            var _temp = _h;
+            var _temp = _w;
             
             _w = _h;
-            _h = _w;
+            _h = _temp;
             
             global.atla_page[$ _page][$ _name].is_rotated = true;
         }
@@ -86,39 +86,6 @@ function atla_sort(_page)
         {
             _current_row_height = _h;
         }
-        /*
-        var _max_y = 0;
-        
-        for (var j = i - 1; j >= 0; --j)
-        {
-            var _prev_sprite = global.atla_page_position[$ _page][j];
-            
-            var _prev_x = _prev_sprite.get_x();
-            var _prev_y = _prev_sprite.get_y();
-            
-            var _prev_w = _prev_sprite.get_width();
-            var _prev_h = _prev_sprite.get_height();
-            
-            if (global.atla_page[$ _page][$ _prev_sprite.get_name()].is_rotated)
-            {
-                var _temp = _prev_w;
-                
-                _prev_w = _prev_h;
-                _prev_h = _temp;
-            }
-            
-            if (_prev_x < _current_x + _w) && (_current_x < _prev_x + _prev_w)
-            {
-                _max_y = max(_max_y ?? 0, _prev_y + _prev_h);
-            }
-            
-            if (_prev_x + _prev_w <= _current_x)
-            {
-                _current_y = _max_y;
-                
-                break;
-            }
-        }*/
         
         global.atla_page[$ _page][$ _name].sprite[@ _index] = i;
         

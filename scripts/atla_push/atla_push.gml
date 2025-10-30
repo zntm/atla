@@ -24,7 +24,7 @@ function atla_push(_page, _sprite, _name)
     
     for (var i = 0; i < _number; ++i)
     {
-        array_push(global.atla_page_position[$ _page], new Atla(_name, _sprite, array_length(global.atla_page_position[$ _page]), i, _number, _xoffset, _yoffset, _width, _height));
+        array_push(global.atla_page_position[$ _page], new AtlaSprite(_name, _sprite, array_length(global.atla_page_position[$ _page]), i, _number, _xoffset, _yoffset, _width, _height));
     }
     
     global.atla_page[$ _page][$ _name] = {
@@ -46,12 +46,12 @@ function atla_push(_page, _sprite, _name)
     
     for (var i = 0; i < _atla_page_position_length; ++i)
     {
-        var _ = _atla_page_position[i];
+        var _ = global.atla_page_position[$ _page][i];
         
         var _x = _.get_x();
         var _y = _.get_y();
         
-        if (_y == 0) || (_.get_index() != 0) continue;
+        if (_.get_index() != 0) continue;
         
         var _w = _.get_width();
         var _h = _.get_height();
@@ -70,7 +70,7 @@ function atla_push(_page, _sprite, _name)
         
         for (var j = i - 1; j >= 0; --j)
         {
-            var _prev_sprite = _atla_page_position[j];
+            var _prev_sprite = global.atla_page_position[$ _page][j];
             
             var _prev_x = _prev_sprite.get_x();
             var _prev_y = _prev_sprite.get_y();
@@ -86,31 +86,24 @@ function atla_push(_page, _sprite, _name)
                 _prev_h = _temp;
             }
             
-            // if (_y <= _prev_y + _prev_h) continue;
-            
-            if (_prev_x < _x + (_w * _n)) && (_x < _prev_x + _prev_w)
+            if (_prev_x <= _x + (_w * _n)) && (_x < _prev_x + _prev_w)
             {
                 _max_y = max(_max_y ?? 0, _prev_y + _prev_h);
             }
             
             if (_prev_x + _prev_w < _x)
             {
-                show_debug_message("test")
-                
                 if (_max_y != undefined)
                 {
-                    global.atla_page_position[$ _page][@ i].set_y(_max_y);
-                    
-                    /*
                     for (var l = 0; l < _n; ++l)
                     {
                         _atla_page_position[@ i + l].set_y(_max_y);
                     }
                     
-                    i += _n - 1;*/
+                    i += _n - 1;
+                    
+                    break;
                 }
-                
-                break;
             }
         }
     }

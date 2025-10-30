@@ -1,21 +1,49 @@
 randomize();
 
-for (var i = 0; i < 256; ++i)
+var _2 = ((GM_build_type == "run") ? $"{filename_dir(GM_project_filename)}/datafiles" : "");
+
+var _ = file_read_directory(
+    _2
+);
+
+for (var i = 0; i < array_length(_); ++i)
 {
-    var _w = irandom_range(1, 128);
-    var _h = irandom_range(1, 128);
+    atla_push("test", sprite_add($"{_2}/{_[i]}", irandom_range(1, 4), false, false, irandom_range(0, 4), irandom_range(0, 4)), string(i));
+}
+
+function file_read_directory(_directory)
+{
+    var _array = [];
     
-    var _surface = surface_create(_w, 128);
+    for (var _file = file_find_first($"{_directory}/*", fa_directory); _file != ""; _file = file_find_next())
+    {
+        array_push(_array, _file);
+    }
     
-    surface_set_target(_surface);
+    file_find_close();
     
-    draw_clear_alpha(irandom(0xffffff), 1);
+    return _array;
+}
+
+function buffer_load_text(_directory)
+{
+    var _buffer = buffer_load(_directory);
     
-    surface_reset_target();
+    var _text = buffer_read(_buffer, buffer_text);
     
-    var _ = sprite_create_from_surface(_surface, 0, 0, _w, _h, false, false, 0, 0);
+    buffer_delete(_buffer);
     
-    atla_push("test", _, string(i));
-    
-    surface_free(_surface);
+    return _text;
+}
+
+function buffer_load_json(_directory)
+{
+    try
+    {
+        return json_parse(buffer_load_text(_directory));
+    }
+    catch (_error)
+    {
+        return -1;
+    }
 }
