@@ -1,0 +1,1 @@
+draw_surface(global.atla_surface[$ "test"], 0, 0);

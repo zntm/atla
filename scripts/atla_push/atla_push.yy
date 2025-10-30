@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"atla_push",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"atla_push",
+  "parent":{
+    "name":"atla",
+    "path":"atla.yyp",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

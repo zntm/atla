@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"atla_sort",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"atla_sort",
+  "parent":{
+    "name":"atla",
+    "path":"atla.yyp",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}
