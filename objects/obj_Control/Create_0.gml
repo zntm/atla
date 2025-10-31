@@ -18,7 +18,10 @@ for (var i = 0; i < length; ++i)
     
     var _t = current_time;
     
-    atla_push("test", _s, string(i));
+    for (var j = 0; j < 2; ++j)
+    {
+        atla_push("test", _s, $"{i}{j}");
+    }
     
     a[i] = current_time - _t;
     
@@ -62,4 +65,4 @@ function buffer_load_json(_directory)
     }
 }
 
-j = 0
+l = 0

@@ -1,9 +1,9 @@
-if (surface_exists(global.atla_surface[$ "test"]))
-    draw_surface(global.atla_surface[$ "test"], 0, 0);
+if (surface_exists(global.___atla_surface[$ "test"]))
+    draw_surface(global.___atla_surface[$ "test"], 0, 0);
 
-atla_draw("test", string(floor(j % length)), j * 4, mouse_x, mouse_y, 1, 1, 0, c_white, 1)
+// atla_draw("test", string(floor(j % length)), j * 4, mouse_x, mouse_y, 1, 1, 0, c_white, 1)
 
-j += 0.08;
+l += 0.08;
 
 for (var i = 0; i < array_length(a) - 1; ++i)
 {

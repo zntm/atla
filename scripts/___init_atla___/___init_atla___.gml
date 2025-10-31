@@ -1,9 +1,11 @@
-#macro ATLA_INIT_SIZE 256
-#macro ATLA_MAX_SIZE  2048
+#macro ___ATLA_INIT_SIZE 256
+#macro ___ATLA_MAX_SIZE  2048
 
-global.atla_page = {}
-global.atla_page_position = {}
+global.___atla_page = {}
+global.___atla_page_position = {}
 
-global.atla_surface = {}
-global.atla_surface_buffer = {}
-global.atla_surface_size = {}
+global.___atla_surface = {}
+global.___atla_surface_buffer = {}
+global.___atla_surface_size = {}
+global.___atla_surface_texture = {}
+global.___atla_surface_uvs = {}

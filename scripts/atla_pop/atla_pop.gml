@@ -1,6 +1,6 @@
 function atla_pop(_page, _name)
 {
-    var _atla_page = global.atla_page[$ _page];
+    var _atla_page = global.___atla_page[$ _page];
     
     if (_atla_page == undefined)
     {
@@ -18,7 +18,7 @@ function atla_pop(_page, _name)
         exit;
     }
     
-    global.atla_page[$ _page][$ _name] = undefined;
+    global.___atla_page[$ _page][$ _name] = undefined;
     
     return _data;
 }

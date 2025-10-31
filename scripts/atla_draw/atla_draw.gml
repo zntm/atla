@@ -1,6 +1,6 @@
 function atla_draw(_page, _name, _index, _x, _y, _xscale, _yscale, _rotation, _colour, _alpha)
 {
-    var _atla_page = global.atla_page[$ _page];
+    var _atla_page = global.___atla_page[$ _page];
     
     if (_atla_page == undefined)
     {
@@ -18,11 +18,11 @@ function atla_draw(_page, _name, _index, _x, _y, _xscale, _yscale, _rotation, _c
         exit;
     }
     
-    var _surface = global.atla_surface[$ _page];
+    var _surface = global.___atla_surface[$ _page];
     
     if (!surface_exists(_surface))
     {
-        var _buffer = global.atla_surface_buffer[$ _page];
+        var _buffer = global.___atla_surface_buffer[$ _page];
         
         if (!buffer_exists(_buffer))
         {
@@ -31,21 +31,31 @@ function atla_draw(_page, _name, _index, _x, _y, _xscale, _yscale, _rotation, _c
             exit;
         }
         
-        var _surface_size = global.atla_surface_size[$ _page];
+        var _surface_size = global.___atla_surface_size[$ _page];
         
-        global.atla_surface[$ _page] = surface_create(
+        global.___atla_surface[$ _page] = surface_create(
             (_surface_size >> 0)  & 0xffff,
             (_surface_size >> 16) & 0xffff
         );
         
-        buffer_set_surface(_buffer, global.atla_surface[$ _page], 0);
+        buffer_set_surface(_buffer, global.___atla_surface[$ _page], 0);
         
-        _surface = global.atla_surface[$ _page];
+        _surface = global.___atla_surface[$ _page];
+        
+        var _surface_texture = global.___atla_surface_texture[$ _page];
+         
+        if (_surface_texture != undefined) && (surface_exists(_surface_texture))
+        {
+            texture_flush(_surface_texture);
+        }
+        
+        _surface_texture = surface_get_texture(_surface);
+        
+        global.___atla_surface_texture[$ _page] = _surface_texture;
+        global.___atla_surface_uvs[$ _page] = texture_get_uvs(_surface_texture); 
     }
     
-    show_debug_message(_data);
-    
-    var _page_position = global.atla_page_position[$ _page][_data.get_sprite_index(floor(_index))];
+    var _page_position = global.___atla_page_position[$ _page][_data.get_sprite_index(floor(_index))];
     
     var _position_xoffset = _page_position.get_xoffset();
     var _position_yoffset = _page_position.get_yoffset();
