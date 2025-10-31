@@ -43,6 +43,8 @@ function atla_draw(_page, _name, _index, _x, _y, _xscale, _yscale, _rotation, _c
         _surface = global.atla_surface[$ _page];
     }
     
+    show_debug_message(_data);
+    
     var _page_position = global.atla_page_position[$ _page][_data.get_sprite_index(floor(_index))];
     
     var _position_xoffset = _page_position.get_xoffset();
