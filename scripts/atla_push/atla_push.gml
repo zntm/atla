@@ -215,7 +215,7 @@ function atla_push(_page, _sprite, _name)
         
         if (_data.is_rotated())
         {
-            draw_sprite_ext(_sprite2, _index, _x + _.get_yoffset(), _y + sprite_get_width(_sprite2) - _.get_xoffset(), 1, 1, 90, c_white, 1);
+            draw_sprite_ext(_sprite2, _index, _x + _.get_yoffset(), _y + _data.get_width() - _.get_xoffset(), 1, 1, 90, c_white, 1);
         }
         else
         {
